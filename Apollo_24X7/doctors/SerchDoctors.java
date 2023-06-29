@@ -57,6 +57,8 @@ public class SerchDoctors {
 		        break;
 		    }
 		 		}
+		    driver.findElement(By.xpath("/hierarchy/android.widget.FrameLayout/android.widget.LinearLayout")).click();
+		    
 		}
 	}
 }
