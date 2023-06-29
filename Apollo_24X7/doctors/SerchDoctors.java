@@ -1,6 +1,7 @@
 package doctors;
 import java.net.MalformedURLException;
 import java.net.URL;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -8,9 +9,6 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.Actions;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.Test;
-import io.appium.java_client.MobileElement;
-import io.appium.java_client.android.AndroidElement;
-import io.appium.java_client.MobileBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.remote.MobileCapabilityType;
 import io.appium.java_client.remote.MobilePlatform;
@@ -48,18 +46,18 @@ public class SerchDoctors {
 		act.moveToElement(gnma).click().perform();
 		WebElement af =driver.findElement(By.className("android.widget.EditText"));
 		af.click();
-		af.sendKeys("Dr.Subramanyam Kolanukuduru");
+		af.sendKeys("Subramanyam");
 		driver.findElements(By.className("android.widget.ScrollView")).get(1).click();
-		WebElement a4f =driver.findElement(By.xpath("//div[@class='_highlighter-box_c3e46 _hovered-element-box_c3e46 _inspected-element-box_c3e46']//div"));
-		Actions act1=new Actions(driver);
-		act1.moveToElement(a4f).click().perform();
-		//AndroidElement list =(AndroidElement)driver.findElement(By.className("android.widget.TextView"));
-		//MobileElement listitem = (MobileElement) driver.findElement(
-			//	MobileBy.AndroidUIAutomator(
-				//		"new UiScrollable(new UiSelector()).scrollIntoView("
-				//+ "new UiSelector().text(\"Dr.Subramanyam Kolanukuduru\")"));
-		//System.out.println(listitem.getLocation());
-		//listitem.click();
-		driver.quit();
+		List<WebElement> doc = driver.findElements(By.className("android.widget.TextView"));
+		for (int i=0 ; i<doc.size();i++)
+		{
+		    if (doc.get(i).getText().equals("Dr. Subramanyam Kolanukuduru")){
+		    {
+		        doc.get(i).click();
+		        break;
+		    }
+		 		}
+		}
 	}
 }
+
